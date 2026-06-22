@@ -1,0 +1,206 @@
+:root {
+    box-sizing: border-box;
+    color-scheme: dark light;
+    font-family: system-ui, sans-serif;
+    line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    font: inherit;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+body {
+    margin: 0;
+}
+
+.container {
+    background-color: color-mix(in srgb, black, transparent 50%);
+    backdrop-filter: blur(2em);
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    margin: 2em auto;
+    max-inline-size: 80ch;
+    padding: 2em;
+}
+
+.pan {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75em;
+}
+
+.pan label {
+    font-weight: bold;
+}
+
+.pan output {
+    font-size: 87.5%;
+    opacity: 0.75;
+}
+
+.cta {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: space-between;
+}
+
+.advice {
+    align-items: center;
+    color: color-mix(in srgb, AccentColor, white 50%);
+    display: flex;
+    gap: 0.5em;
+    margin-inline-start: auto;
+    transform-origin: center right;
+}
+
+button {
+    align-items: center;
+    background-color: transparent;
+    border: thin solid color-mix(in srgb, AccentColor, transparent 50%);
+    border-radius: 0.5em;
+    box-shadow: 0 0 0.5em color-mix(in srgb, AccentColor, transparent 50%);
+    color: AccentColorText;
+    cursor: pointer;
+    display: flex;
+    font: inherit;
+    gap: 0.5em;
+    inline-size: fit-content;
+    line-height: 1.125;
+    padding: 0.5em 1em;
+    transition: 0.15s all ease;
+    text-align: start;
+}
+
+button:hover {
+    border: thin solid AccentColor;
+    box-shadow: 0 0 1em AccentColor;
+}
+
+input {
+    accent-color: AccentColor;
+}
+
+input[type="range"] {
+    appearance: none;
+    background-color: transparent;
+    margin: 0;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    background-color: color-mix(in srgb, black, transparent 10%);
+    border-radius: calc(Infinity * 1em);
+}
+
+input[type="range"]::-moz-range-track {
+    background-color: color-mix(in srgb, black, transparent 10%);
+    border-radius: calc(Infinity * 1em);
+}
+
+input[type="range"]::-ms-track {
+    background-color: color-mix(in srgb, black, transparent 10%);
+    border-radius: calc(Infinity * 1em);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    border-radius: calc(Infinity * 1em);
+    box-shadow: 0 0 0.5em AccentColor;
+    cursor: pointer;
+    scale: 1.5;
+    transition: 0.15s all ease;
+}
+
+input[type="range"]::-moz-range-thumb {
+    border-radius: calc(Infinity * 1em);
+    box-shadow: 0 0 0.5em AccentColor;
+    cursor: pointer;
+    scale: 1.5;
+    transition: 0.15s all ease;
+}
+
+input[type="range"]::-ms-thumb {
+    border-radius: calc(Infinity * 1em);
+    box-shadow: 0 0 0.5em AccentColor;
+    cursor: pointer;
+    scale: 1.5;
+    transition: 0.15s all ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    box-shadow: 0 0 1em AccentColor;
+    filter: brightness(1.1);
+    scale: 1.7;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+    box-shadow: 0 0 1em AccentColor;
+    filter: brightness(1.1);
+    opacity: 1;
+    scale: 1.7;
+}
+
+input[type="range"]::-ms-thumb:hover {
+    box-shadow: 0 0 1em AccentColor;
+    filter: brightness(1.1);
+    scale: 1.7;
+}
+
+details {
+    border: thin solid color-mix(in srgb, currentColor, transparent 70%);
+    border-radius: 0.5em;
+}
+
+summary {
+    cursor: pointer;
+    font-weight: bold;
+    padding: 1em;
+}
+
+details::details-content {
+    text-wrap: pretty;
+}
+
+details:open::details-content {
+    padding: 0 1em 1em;
+}
+
+.background {
+    aspect-ratio: 16 / 9;
+    background-color: AccentColor;
+    inset-block-start: 0;
+    inset-inline: 0;
+    mask-mode: luminance;
+    mask-image: url("background.png");
+    mask-position: top center;
+    mask-size: cover;
+    mask-repeat: no-repeat;
+    position: fixed;
+    z-index: -1;
+}
+
+
+.background::before {
+    background-image: radial-gradient(circle at calc(50% + var(--pan-value) * 50%) 0%, transparent, Canvas 70%);
+    content: '';
+    inset: 0;
+    position: absolute;
+    z-index: 0;
+}
+
+.background::after {
+    background-image: linear-gradient(to top, Canvas, transparent 50%);
+    content: '';
+    inset: 0;
+    position: absolute;
+    z-index: 0;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interaural time difference</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" type="module" defer></script>
+</head>
+<body>
+<div class="background"></div>
+<div class="container">
+  <div class="cta">
+    <button id="playBtn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play-icon lucide-play"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg>
+      Jouer le son
+    </button>
+    <button id="stopBtn" hidden>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pause-icon lucide-pause"><rect x="14" y="3" width="5" height="18" rx="1"/><rect x="5" y="3" width="5" height="18" rx="1"/></svg>
+      Stopper le son
+    </button>
+    <div class="advice">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-headphones-icon lucide-headphones"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg>
+      Port du casque obligatoire
+    </div>
+  </div>
+  <div class="pan">
+    <label for="pan">Position de la source sonore</label>
+    <input type="range" id="pan" min="-1" max="1" step="0.01" value="0" list="panValues">
+    <output for="pan"></output>
+    <datalist id="panValues">
+      <option value="-1" label="Gauche">
+      <option value="0" label="Centre">
+      <option value="1" label="Droite">
+    </datalist>
+  </div>
+  
+  <details>
+    <summary>À propos de l'ITD</summary>
+    <p>
+      Quand on a commencé à enregistrer du son, tout ne se faisait qu'au travers d'une seule source sonore. On avait un micro, on enregistrait et on obtenait un signal « monophonique » (ou « mono »).
+    </p>
+    <p>
+      Rapidement, on a voulu doubler la source sonore pour qu'à l'instar de nos deux yeux qui nous permettent de percevoir notre monde en trois dimensions, on puisse aussi percevoir le son à différents endroits de l'espace. C'est alors que sont apparus les enregistrements « stéréophoniques » (ou « stéréo ») qui ont donc commencé à être restitués à l'aide de deux haut-parleurs. Un destiné pour l'oreille gauche et l'autre pour l'oreille droite.
+    </p>
+    <p>
+      Les deux haut-parleurs ne diffusent pas exactement le même signal. C'est cette différence entre les deux signaux que notre cerveau utilise pour localiser les sources sonores dans l'espace. En studio, quand l'ingénieur du son veut placer un son à gauche (par exemple), il va donc augmenter le signal envoyé dans le canal gauche et le diminuer dans le canal droit. C'est ce qu'on appelle le « pan » (pour « panoramique »).
+    </p>
+    <p>
+      Mais si le « pan » est plutôt efficace pour faire croire à notre cerveau que le son vient d'un côté ou de l'autre et cela, quel que soit l'appareil d'écoute utilisé (enceintes, casque, etc.), cela tient plus d'une illusion très efficace que d'une reproduction fidèle de la réalité. En effet, dans notre environnement, les sons ne sont pas seulement plus forts d'un côté que de l'autre : ils arrivent avec un léger décalage temporel entre les deux oreilles. Ce décalage est imperceptible pour nous mais il suffit à notre cerveau pour localiser l'emplacement de la source sonore. C'est ce qu'on appelle l'« interaural time difference » (ITD) ou « différence de temps interaurale » en français ; ce délai découle directement de la distance entre les deux oreilles et de la vitesse du son.
+    </p>
+    <p>
+      Cet exemple permet de simuler l'ITD en introduisant un léger délai entre les deux canaux audio. Délai qui est réglable à l'aide du curseur au centre de la page (le curseur représente l'emplacement latéral supposé de la source sonore). Ce délai est accompagné d'un filtrage qui vient atténuer les hautes fréquences du côté opposé à la source sonore, simulant ainsi la barrière acoustique que représente notre tête.
+    </p>
+    <p>
+      À noter toutefois que ce type de simulation est plus efficace avec un casque qu'avec des enceintes. De plus, le filtre appliqué pour simuler la barrière acoustique formée par la tête est très basique : en effet, chaque forme de tête est différente et le filtrage qui en résulte aussi. Il s'agit donc d'une approximation qui peut s'avérer moins efficace pour certaines personnes.
+    </p>
+  </details>
+</div>
+
+</body>
+</html>
